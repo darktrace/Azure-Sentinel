@@ -25,8 +25,7 @@
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "Workspace name for Log Analytics where Microsoft Sentinel is setup",
-        "strongType": "Microsoft.OperationalInsights/workspaces"
+        "description": "Workspace name for Log Analytics where Microsoft Sentinel is setup"
       }
     },
     "workbook1-name": {
@@ -155,11 +154,31 @@
                   "operator": "AND",
                   "criteria": [
                     {
-                      "contentId": "darktrace_model_alerts_CL",
+                      "contentId": "DarktraceModelAlerts_CL",
                       "kind": "DataType"
                     },
                     {
-                      "contentId": "DarktraceRESTConnector",
+                      "contentId": "DarktraceASM_CL",
+                      "kind": "DataType"
+                    },
+                    {
+                      "contentId": "DarktraceEMAIL_CL",
+                      "kind": "DataType"
+                    },
+                    {
+                      "contentId": "DarktraceIncidents_CL",
+                      "kind": "DataType"
+                    },
+                    {
+                      "contentId": "DarktraceResponseActions_CL",
+                      "kind": "DataType"
+                    },
+                    {
+                      "contentId": "DarktraceSystemStatusAlerts_CL",
+                      "kind": "DataType"
+                    },
+                    {
+                      "contentId": "DarktraceActiveAISecurityPlatform",
                       "kind": "DataConnector"
                     }
                   ]
