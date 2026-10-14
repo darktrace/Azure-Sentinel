@@ -1,0 +1,28 @@
+{
+  "name": "DarktraceSecureAI",
+  "apiVersion": "2025-04-01-preview",
+  "type": "Microsoft.SecurityInsights/dataConnectors",
+  "location": "{{location}}",
+  "kind": "Push",
+  "properties": {
+    "connectorDefinitionName": "DarktraceSecureAIUnifiedAgentRisk",
+    "dcrConfig": {
+      "dataCollectionEndpoint": "{{dataCollectionEndpoint}}",
+      "dataCollectionRuleImmutableId": "{{dataCollectionRuleImmutableId}}",
+      "streamName": "Custom-UnifiedAgentRisk_CL"
+    },
+    "auth": {
+      "type": "Push",
+      "appId": "{{appId}}",
+      "servicePrincipalId": "{{servicePrincipalId}}"
+    },
+    "request": {
+      "RetryCount": 1
+    },
+    "response": {
+      "eventsJsonPaths": [
+        "$.messages"
+      ]
+    }
+  }
+}

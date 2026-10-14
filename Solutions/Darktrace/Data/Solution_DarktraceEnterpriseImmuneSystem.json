@@ -16,7 +16,8 @@
   ],
   "Data Connectors": [
     "Data Connectors/DarktraceConnectorRESTAPI.json",
-    "Data Connectors/ccf/Darktrace_ConnectorDefinition.json"
+    "Data Connectors/ccf/Darktrace_ConnectorDefinition.json",
+    "Data Connectors/secureAi/DarktraceSecureAI_connectorDefinition.json"
   ],
   "BasePath": "C:\\GitHub\\Azure-Sentinel\\Solutions\\Darktrace",
   "Version": "3.1.1",
