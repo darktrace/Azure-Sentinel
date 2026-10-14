@@ -89,70 +89,47 @@
           ]
         },
         {
-          "title": "2. Configure Microsoft Sentinel as a destination in Darktrace SecureAI",
+          "title": "2. Configure Microsoft Sentinel as a destination in Darktrace Platform Portal",
           "description": "Configure Darktrace SecureAI to send flat JSON records that follow the Unified Agent Risk schema. Use OAuth 2.0 client credentials and the values provided below.",
           "instructions": [
             {
-              "type": "CopyableLabel",
-              "parameters": {
-                "label": "Data Collection Endpoint",
-                "fillWith": [
-                  "DataCollectionEndpoint"
-                ]
-              }
-            },
-            {
-              "type": "CopyableLabel",
-              "parameters": {
-                "label": "Token URL",
-                "fillWith": [
-                  "TenantId"
-                ],
-                "value": "[concat(environment().authentication.loginEndpoint, '{0}/oauth2/v2.0/token')]"
-              }
-            },
-            {
-              "type": "CopyableLabel",
-              "parameters": {
-                "label": "Client ID (Microsoft Entra application ID)",
-                "fillWith": [
-                  "ApplicationId"
-                ]
-              }
-            },
-            {
-              "type": "CopyableLabel",
-              "parameters": {
-                "label": "Client secret",
-                "fillWith": [
-                  "ApplicationSecret"
-                ]
-              }
-            },
-            {
-              "type": "CopyableLabel",
-              "parameters": {
-                "label": "Scope",
-                "value": "https://monitor.azure.com/.default"
-              }
-            },
-            {
-              "type": "CopyableLabel",
               "parameters": {
                 "label": "Tenant ID (Directory ID)",
-                "fillWith": [
-                  "TenantId"
-                ]
-              }
+                "fillWith": ["TenantId"]
+              },
+              "type": "CopyableLabel"
             },
             {
-              "type": "CopyableLabel",
+              "parameters": {
+                "label": "Entra App Registration Application ID",
+                "fillWith": ["ApplicationId"],
+                "placeholder": "Deploy push connector to get the App Registration Application ID"
+              },
+              "type": "CopyableLabel"
+            },
+            {
+              "parameters": {
+                "label": "Entra App Registration Secret",
+                "fillWith": ["ApplicationSecret"],
+                "placeholder": "Deploy push connector to get the App Registration Secret"
+              },
+              "type": "CopyableLabel"
+            },
+            {
+              "parameters": {
+                "label": "Data Collection Endpoint Uri",
+                "fillWith": ["DataCollectionEndpoint"],
+                "placeholder": "Deploy push connector to get the Data Collection Endpoint Uri"
+              },
+              "type": "CopyableLabel"
+            },
+            {
               "parameters": {
                 "label": "Data Collection Rule Immutable ID",
-                "fillWith": [
-                  "DataCollectionRuleId"
-                ]
-              }
+                "fillWith": ["DataCollectionRuleId"],
+                "placeholder": "Deploy push connector to get the Data Collection Rule Immutable ID"
+              },
+              "type": "CopyableLabel"
             },
             {
               "type": "CopyableLabel",

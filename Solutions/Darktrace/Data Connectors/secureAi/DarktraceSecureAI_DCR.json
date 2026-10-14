@@ -1,5 +1,5 @@
 {
-  "name": "DarktraceSecureAIUnifiedAgentRisk-DCR",
+  "name": "DarktraceSecureAI-DCR",
   "apiVersion": "2023-03-11",
   "type": "Microsoft.Insights/dataCollectionRules",
   "location": "{{location}}",
