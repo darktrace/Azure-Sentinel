@@ -8,6 +8,7 @@
         "name": "UnifiedAgentRisk_CL",
         "columns": [
           { "name": "TimeGenerated", "type": "datetime" },
+          { "name": "CustomerTenantId", "type": "string" },
           { "name": "PartnerSchemaVersion", "type": "string" },
           { "name": "EventSchema", "type": "string" },
           { "name": "EventSchemaVersion", "type": "string" },

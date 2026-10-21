@@ -426,48 +426,48 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "SrcMacAddr": "SrcMacAddr",
                   "DtDescription": "DtDescription",
-                  "EventStartTime": "EventStartTime",
-                  "SrcPortNumber": "SrcPortNumber",
-                  "DstPortNumber": "DstPortNumber",
-                  "DtCategory": "DtCategory",
-                  "NetworkRuleNumber": "NetworkRuleNumber",
-                  "DstMacAddr": "DstMacAddr",
-                  "DtSentinelCategory": "DtSentinelCategory",
+                  "SrcMacAddr": "SrcMacAddr",
                   "ThreatIdentifier": "ThreatIdentifier",
-                  "EventSeverity": "EventSeverity",
+                  "NetworkRuleNumber": "NetworkRuleNumber",
                   "DtDeviceIdentifier": "DtDeviceIdentifier",
+                  "DtCategory": "DtCategory",
+                  "DtSentinelCategory": "DtSentinelCategory",
+                  "EventSeverity": "EventSeverity",
+                  "EventStartTime": "EventStartTime",
+                  "DstPortNumber": "DstPortNumber",
+                  "DstMacAddr": "DstMacAddr",
+                  "SrcPortNumber": "SrcPortNumber",
                   "DtCompliance": "DtCompliance",
                   "NetworkRuleName": "NetworkRuleName"
                 },
                 "alertDetailsOverride": {
-                  "alertDescriptionFormat": "{{DtMessage}}",
+                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertDynamicProperties": [
                     {
-                      "value": "DtBreachURL",
-                      "alertProperty": "AlertLink"
+                      "alertProperty": "AlertLink",
+                      "value": "DtBreachURL"
                     },
                     {
-                      "value": "EventVendor",
-                      "alertProperty": "ProviderName"
+                      "alertProperty": "ProviderName",
+                      "value": "EventVendor"
                     },
                     {
-                      "value": "EventProduct",
-                      "alertProperty": "ProductName"
+                      "alertProperty": "ProductName",
+                      "value": "EventProduct"
                     },
                     {
-                      "value": "ThreatCategory",
-                      "alertProperty": "ProductComponentName"
+                      "alertProperty": "ProductComponentName",
+                      "value": "ThreatCategory"
                     },
                     {
-                      "value": "DtSentinelCategory",
-                      "alertProperty": "Severity"
+                      "alertProperty": "Severity",
+                      "value": "DtSentinelCategory"
                     }
                   ],
-                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null
+                  "alertTacticsColumnName": null,
+                  "alertDescriptionFormat": "{{DtMessage}}"
                 }
               }
             },
@@ -588,46 +588,46 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "DtGroupScore": "DtGroupScore",
-                  "DtCurrentGroup": "DtCurrentGroup",
-                  "DtSrcDeviceName": "DtSrcDeviceName",
-                  "DtSentinelCategory": "DtSentinelCategory",
-                  "NetworkRuleName": "NetworkRuleName",
-                  "DtSummary": "DtSummary",
                   "DtGroupCategory": "DtGroupCategory",
-                  "ThreatRiskLevel": "ThreatRiskLevel",
+                  "DtGroupScore": "DtGroupScore",
                   "EventStartTime": "EventStartTime",
-                  "DtSeverity": "DtSeverity",
                   "DtNewEvent": "DtNewEvent",
-                  "EventEndTime": "EventEndTime"
+                  "EventEndTime": "EventEndTime",
+                  "ThreatRiskLevel": "ThreatRiskLevel",
+                  "DtSeverity": "DtSeverity",
+                  "DtSrcDeviceName": "DtSrcDeviceName",
+                  "NetworkRuleName": "NetworkRuleName",
+                  "DtSentinelCategory": "DtSentinelCategory",
+                  "DtSummary": "DtSummary",
+                  "DtCurrentGroup": "DtCurrentGroup"
                 },
                 "alertDetailsOverride": {
-                  "alertDescriptionFormat": "{{DtSummary}}",
+                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertDynamicProperties": [
                     {
-                      "value": "DtURL",
-                      "alertProperty": "AlertLink"
+                      "alertProperty": "AlertLink",
+                      "value": "DtURL"
                     },
                     {
-                      "value": "EventVendor",
-                      "alertProperty": "ProviderName"
+                      "alertProperty": "ProviderName",
+                      "value": "EventVendor"
                     },
                     {
-                      "value": "EventProduct",
-                      "alertProperty": "ProductName"
+                      "alertProperty": "ProductName",
+                      "value": "EventProduct"
                     },
                     {
-                      "value": "ThreatCategory",
-                      "alertProperty": "ProductComponentName"
+                      "alertProperty": "ProductComponentName",
+                      "value": "ThreatCategory"
                     },
                     {
-                      "value": "DtSentinelCategory",
-                      "alertProperty": "Severity"
+                      "alertProperty": "Severity",
+                      "value": "DtSentinelCategory"
                     }
                   ],
-                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null
+                  "alertTacticsColumnName": null,
+                  "alertDescriptionFormat": "{{DtSummary}}"
                 }
               }
             },
@@ -748,38 +748,38 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "ThreatRiskCategory": "ThreatRiskCategory",
+                  "DtStatus": "DtStatus",
                   "EventStartTime": "EventStartTime",
-                  "DtName": "DtName",
                   "NetworkRuleName": "NetworkRuleName",
-                  "DtMessage": "DtMessage",
-                  "DtSeverity": "DtSeverity",
                   "ThreatRiskLevel": "ThreatRiskLevel",
-                  "DtStatus": "DtStatus"
+                  "DtName": "DtName",
+                  "ThreatRiskCategory": "ThreatRiskCategory",
+                  "DtSeverity": "DtSeverity",
+                  "DtMessage": "DtMessage"
                 },
                 "alertDetailsOverride": {
-                  "alertDescriptionFormat": "{{DtMessage}}",
+                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertDynamicProperties": [
                     {
-                      "value": "DtURL",
-                      "alertProperty": "AlertLink"
+                      "alertProperty": "AlertLink",
+                      "value": "DtURL"
                     },
                     {
-                      "value": "EventVendor",
-                      "alertProperty": "ProviderName"
+                      "alertProperty": "ProviderName",
+                      "value": "EventVendor"
                     },
                     {
-                      "value": "EventProduct",
-                      "alertProperty": "ProductName"
+                      "alertProperty": "ProductName",
+                      "value": "EventProduct"
                     },
                     {
-                      "value": "ThreatCategory",
-                      "alertProperty": "ProductComponentName"
+                      "alertProperty": "ProductComponentName",
+                      "value": "ThreatCategory"
                     }
                   ],
-                  "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
                   "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null
+                  "alertTacticsColumnName": null,
+                  "alertDescriptionFormat": "{{DtMessage}}"
                 }
               }
             },
@@ -909,40 +909,40 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "IncidentEventScore": "aiaScore",
-                  "ModelBreaches": "modelBreaches",
-                  "CurrentGroup": "currentGroup",
+                  "EndTime": "endTime",
                   "Asset": "bestAssetName",
                   "StartTime": "startTime",
-                  "EndTime": "endTime",
-                  "AssetDetails": "devices",
                   "PreviousGroups": "groupPreviousGroups",
+                  "CurrentGroup": "currentGroup",
+                  "AssetDetails": "devices",
+                  "IncidentEventScore": "aiaScore",
+                  "ModelBreaches": "modelBreaches",
                   "CustomLabel": "customLabel",
                   "IncidentScore": "groupScore"
                 },
                 "alertDetailsOverride": {
-                  "alertDescriptionFormat": "{{summary}}",
+                  "alertDisplayNameFormat": "Darktrace Incident Event: {{incidentEventTitle}} ",
+                  "alertSeverityColumnName": "SentinelSeverity",
                   "alertDynamicProperties": [
                     {
-                      "value": "url",
-                      "alertProperty": "AlertLink"
+                      "alertProperty": "AlertLink",
+                      "value": "url"
                     },
                     {
-                      "value": "darktraceProduct",
-                      "alertProperty": "ProductName"
+                      "alertProperty": "ProductName",
+                      "value": "darktraceProduct"
                     },
                     {
-                      "value": "ProviderName",
-                      "alertProperty": "ProviderName"
+                      "alertProperty": "ProviderName",
+                      "value": "ProviderName"
                     }
                   ],
-                  "alertDisplayNameFormat": "Darktrace Incident Event: {{incidentEventTitle}} ",
-                  "alertSeverityColumnName": "SentinelSeverity"
+                  "alertDescriptionFormat": "{{summary}}"
                 },
                 "incidentConfiguration": {
                   "groupingConfiguration": {
-                    "lookbackDuration": "PT5M",
                     "matchingMethod": "AllEntities",
+                    "lookbackDuration": "PT5M",
                     "enabled": false,
                     "reopenClosedIncident": false
                   },
@@ -1095,39 +1095,39 @@
                 },
                 "customDetails": {
                   "Compliance": "compliance",
-                  "Score": "score",
                   "DeviceCredentials": "deviceCredentials",
-                  "Category": "category",
                   "CustomLabel": "customLabel",
-                  "DeviceHostname": "deviceHostname"
+                  "Category": "category",
+                  "DeviceHostname": "deviceHostname",
+                  "Score": "score"
                 },
                 "alertDetailsOverride": {
-                  "alertDescriptionFormat": "{{message}}",
+                  "alertDisplayNameFormat": "Darktrace Model Alert: {{modelName}}  ",
+                  "alertSeverityColumnName": "SentinelSeverity",
                   "alertDynamicProperties": [
                     {
-                      "value": "alertUrl",
-                      "alertProperty": "AlertLink"
+                      "alertProperty": "AlertLink",
+                      "value": "alertUrl"
                     },
                     {
-                      "value": "darktraceProduct",
-                      "alertProperty": "ProductName"
+                      "alertProperty": "ProductName",
+                      "value": "darktraceProduct"
                     },
                     {
-                      "value": "ProviderName",
-                      "alertProperty": "ProviderName"
+                      "alertProperty": "ProviderName",
+                      "value": "ProviderName"
                     },
                     {
-                      "value": "techniqueIdArray",
-                      "alertProperty": "Techniques"
+                      "alertProperty": "Techniques",
+                      "value": "techniqueIdArray"
                     }
                   ],
-                  "alertDisplayNameFormat": "Darktrace Model Alert: {{modelName}}  ",
-                  "alertSeverityColumnName": "SentinelSeverity"
+                  "alertDescriptionFormat": "{{message}}"
                 },
                 "incidentConfiguration": {
                   "groupingConfiguration": {
-                    "lookbackDuration": "PT5H",
                     "matchingMethod": "AllEntities",
+                    "lookbackDuration": "PT5H",
                     "enabled": false,
                     "reopenClosedIncident": false
                   },
@@ -3904,6 +3904,10 @@
                   "Custom-UnifiedAgentRisk_CL": {
                     "columns": [
                       {
+                        "name": "CustomerTenantId",
+                        "type": "string"
+                      },
+                      {
                         "name": "PartnerSchemaVersion",
                         "type": "string"
                       },
@@ -4225,6 +4229,10 @@
                     {
                       "name": "TimeGenerated",
                       "type": "datetime"
+                    },
+                    {
+                      "name": "CustomerTenantId",
+                      "type": "string"
                     },
                     {
                       "name": "PartnerSchemaVersion",
