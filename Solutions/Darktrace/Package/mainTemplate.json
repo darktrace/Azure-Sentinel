@@ -129,11 +129,6 @@
     "_dataConnectorContentIdConnections2": "DarktraceActiveAISecurityPlatformConnections",
     "dataConnectorTemplateNameConnections2": "[concat(parameters('workspace'),'-dc-',uniquestring(variables('_dataConnectorContentIdConnections2')))]",
     "blanks": "[replace('b', 'b', '')]",
-    "_dataConnectorContentIdConnectorDefinition3": "DarktraceSecureAIUnifiedAgentRisk",
-    "dataConnectorTemplateNameConnectorDefinition3": "[concat(parameters('workspace'),'-dc-',uniquestring(variables('_dataConnectorContentIdConnectorDefinition3')))]",
-    "_dataConnectorContentIdConnections3": "DarktraceSecureAIUnifiedAgentRiskConnections",
-    "dataConnectorTemplateNameConnections3": "[concat(parameters('workspace'),'-dc-',uniquestring(variables('_dataConnectorContentIdConnections3')))]",
-    "dataCollectionEndpointId3": "[concat('/subscriptions/',parameters('subscription'),'/resourceGroups/',parameters('resourceGroupName'),'/providers/Microsoft.Insights/dataCollectionEndpoints/',parameters('workspace'))]",
     "_solutioncontentProductId": "[concat(take(variables('_solutionId'),50),'-','sl','-', uniqueString(concat(variables('_solutionId'),'-','Solution','-',variables('_solutionId'),'-', variables('_solutionVersion'))))]"
   },
   "resources": [
@@ -388,8 +383,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcHostname",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "SrcHostname"
                       }
                     ],
                     "entityType": "Host"
@@ -397,8 +392,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "DstHostname",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "DstHostname"
                       }
                     ],
                     "entityType": "Host"
@@ -406,8 +401,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcIpAddr",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "SrcIpAddr"
                       }
                     ],
                     "entityType": "IP"
@@ -415,8 +410,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "DstIpAddr",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "DstIpAddr"
                       }
                     ],
                     "entityType": "IP"
@@ -426,23 +421,25 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "DtDescription": "DtDescription",
+                  "SrcPortNumber": "SrcPortNumber",
                   "SrcMacAddr": "SrcMacAddr",
                   "ThreatIdentifier": "ThreatIdentifier",
-                  "NetworkRuleNumber": "NetworkRuleNumber",
-                  "DtDeviceIdentifier": "DtDeviceIdentifier",
-                  "DtCategory": "DtCategory",
-                  "DtSentinelCategory": "DtSentinelCategory",
-                  "EventSeverity": "EventSeverity",
-                  "EventStartTime": "EventStartTime",
-                  "DstPortNumber": "DstPortNumber",
                   "DstMacAddr": "DstMacAddr",
-                  "SrcPortNumber": "SrcPortNumber",
+                  "DtDeviceIdentifier": "DtDeviceIdentifier",
+                  "EventSeverity": "EventSeverity",
                   "DtCompliance": "DtCompliance",
-                  "NetworkRuleName": "NetworkRuleName"
+                  "DtSentinelCategory": "DtSentinelCategory",
+                  "DstPortNumber": "DstPortNumber",
+                  "DtCategory": "DtCategory",
+                  "EventStartTime": "EventStartTime",
+                  "NetworkRuleNumber": "NetworkRuleNumber",
+                  "NetworkRuleName": "NetworkRuleName",
+                  "DtDescription": "DtDescription"
                 },
                 "alertDetailsOverride": {
                   "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
+                  "alertSeverityColumnName": null,
+                  "alertDescriptionFormat": "{{DtMessage}}",
                   "alertDynamicProperties": [
                     {
                       "alertProperty": "AlertLink",
@@ -465,9 +462,7 @@
                       "value": "DtSentinelCategory"
                     }
                   ],
-                  "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null,
-                  "alertDescriptionFormat": "{{DtMessage}}"
+                  "alertTacticsColumnName": null
                 }
               }
             },
@@ -568,8 +563,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcHostname",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "SrcHostname"
                       }
                     ],
                     "entityType": "Host"
@@ -577,8 +572,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcIpAddr",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "SrcIpAddr"
                       }
                     ],
                     "entityType": "IP"
@@ -588,21 +583,23 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "DtGroupCategory": "DtGroupCategory",
-                  "DtGroupScore": "DtGroupScore",
-                  "EventStartTime": "EventStartTime",
-                  "DtNewEvent": "DtNewEvent",
-                  "EventEndTime": "EventEndTime",
+                  "NetworkRuleName": "NetworkRuleName",
+                  "DtSrcDeviceName": "DtSrcDeviceName",
                   "ThreatRiskLevel": "ThreatRiskLevel",
                   "DtSeverity": "DtSeverity",
-                  "DtSrcDeviceName": "DtSrcDeviceName",
-                  "NetworkRuleName": "NetworkRuleName",
-                  "DtSentinelCategory": "DtSentinelCategory",
+                  "DtNewEvent": "DtNewEvent",
+                  "DtGroupScore": "DtGroupScore",
+                  "EventEndTime": "EventEndTime",
+                  "EventStartTime": "EventStartTime",
+                  "DtCurrentGroup": "DtCurrentGroup",
                   "DtSummary": "DtSummary",
-                  "DtCurrentGroup": "DtCurrentGroup"
+                  "DtSentinelCategory": "DtSentinelCategory",
+                  "DtGroupCategory": "DtGroupCategory"
                 },
                 "alertDetailsOverride": {
                   "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
+                  "alertSeverityColumnName": null,
+                  "alertDescriptionFormat": "{{DtSummary}}",
                   "alertDynamicProperties": [
                     {
                       "alertProperty": "AlertLink",
@@ -625,9 +622,7 @@
                       "value": "DtSentinelCategory"
                     }
                   ],
-                  "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null,
-                  "alertDescriptionFormat": "{{DtSummary}}"
+                  "alertTacticsColumnName": null
                 }
               }
             },
@@ -728,8 +723,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcHostname",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "SrcHostname"
                       }
                     ],
                     "entityType": "Host"
@@ -737,8 +732,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "SrcIpAddr",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "SrcIpAddr"
                       }
                     ],
                     "entityType": "IP"
@@ -748,17 +743,19 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "DtStatus": "DtStatus",
-                  "EventStartTime": "EventStartTime",
                   "NetworkRuleName": "NetworkRuleName",
                   "ThreatRiskLevel": "ThreatRiskLevel",
-                  "DtName": "DtName",
-                  "ThreatRiskCategory": "ThreatRiskCategory",
                   "DtSeverity": "DtSeverity",
-                  "DtMessage": "DtMessage"
+                  "DtName": "DtName",
+                  "DtMessage": "DtMessage",
+                  "EventStartTime": "EventStartTime",
+                  "DtStatus": "DtStatus",
+                  "ThreatRiskCategory": "ThreatRiskCategory"
                 },
                 "alertDetailsOverride": {
                   "alertDisplayNameFormat": "Darktrace: {{ThreatRiskLevel}} - {{NetworkRuleName}}",
+                  "alertSeverityColumnName": null,
+                  "alertDescriptionFormat": "{{DtMessage}}",
                   "alertDynamicProperties": [
                     {
                       "alertProperty": "AlertLink",
@@ -777,9 +774,7 @@
                       "value": "ThreatCategory"
                     }
                   ],
-                  "alertSeverityColumnName": null,
-                  "alertTacticsColumnName": null,
-                  "alertDescriptionFormat": "{{DtMessage}}"
+                  "alertTacticsColumnName": null
                 }
               }
             },
@@ -880,8 +875,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "accountName",
-                        "identifier": "FullName"
+                        "identifier": "FullName",
+                        "columnName": "accountName"
                       }
                     ],
                     "entityType": "Account"
@@ -889,8 +884,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "deviceIp",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "deviceIp"
                       }
                     ],
                     "entityType": "IP"
@@ -898,8 +893,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "deviceHostname",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "deviceHostname"
                       }
                     ],
                     "entityType": "Host"
@@ -909,20 +904,21 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "EndTime": "endTime",
-                  "Asset": "bestAssetName",
-                  "StartTime": "startTime",
-                  "PreviousGroups": "groupPreviousGroups",
-                  "CurrentGroup": "currentGroup",
-                  "AssetDetails": "devices",
                   "IncidentEventScore": "aiaScore",
+                  "CurrentGroup": "currentGroup",
+                  "IncidentScore": "groupScore",
+                  "AssetDetails": "devices",
+                  "Asset": "bestAssetName",
                   "ModelBreaches": "modelBreaches",
+                  "EndTime": "endTime",
                   "CustomLabel": "customLabel",
-                  "IncidentScore": "groupScore"
+                  "StartTime": "startTime",
+                  "PreviousGroups": "groupPreviousGroups"
                 },
                 "alertDetailsOverride": {
                   "alertDisplayNameFormat": "Darktrace Incident Event: {{incidentEventTitle}} ",
                   "alertSeverityColumnName": "SentinelSeverity",
+                  "alertDescriptionFormat": "{{summary}}",
                   "alertDynamicProperties": [
                     {
                       "alertProperty": "AlertLink",
@@ -936,17 +932,16 @@
                       "alertProperty": "ProviderName",
                       "value": "ProviderName"
                     }
-                  ],
-                  "alertDescriptionFormat": "{{summary}}"
+                  ]
                 },
                 "incidentConfiguration": {
+                  "createIncident": true,
                   "groupingConfiguration": {
                     "matchingMethod": "AllEntities",
                     "lookbackDuration": "PT5M",
                     "enabled": false,
                     "reopenClosedIncident": false
-                  },
-                  "createIncident": true
+                  }
                 }
               }
             },
@@ -1047,8 +1042,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "accountName",
-                        "identifier": "FullName"
+                        "identifier": "FullName",
+                        "columnName": "accountName"
                       }
                     ],
                     "entityType": "Account"
@@ -1056,8 +1051,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "sourceIp",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "sourceIp"
                       }
                     ],
                     "entityType": "IP"
@@ -1065,8 +1060,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "destIp",
-                        "identifier": "Address"
+                        "identifier": "Address",
+                        "columnName": "destIp"
                       }
                     ],
                     "entityType": "IP"
@@ -1074,8 +1069,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "destHost",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "destHost"
                       }
                     ],
                     "entityType": "Host"
@@ -1083,8 +1078,8 @@
                   {
                     "fieldMappings": [
                       {
-                        "columnName": "sourceHost",
-                        "identifier": "HostName"
+                        "identifier": "HostName",
+                        "columnName": "sourceHost"
                       }
                     ],
                     "entityType": "Host"
@@ -1094,16 +1089,17 @@
                   "aggregationKind": "AlertPerResult"
                 },
                 "customDetails": {
-                  "Compliance": "compliance",
-                  "DeviceCredentials": "deviceCredentials",
                   "CustomLabel": "customLabel",
-                  "Category": "category",
+                  "DeviceCredentials": "deviceCredentials",
+                  "Score": "score",
+                  "Compliance": "compliance",
                   "DeviceHostname": "deviceHostname",
-                  "Score": "score"
+                  "Category": "category"
                 },
                 "alertDetailsOverride": {
                   "alertDisplayNameFormat": "Darktrace Model Alert: {{modelName}}  ",
                   "alertSeverityColumnName": "SentinelSeverity",
+                  "alertDescriptionFormat": "{{message}}",
                   "alertDynamicProperties": [
                     {
                       "alertProperty": "AlertLink",
@@ -1121,17 +1117,16 @@
                       "alertProperty": "Techniques",
                       "value": "techniqueIdArray"
                     }
-                  ],
-                  "alertDescriptionFormat": "{{message}}"
+                  ]
                 },
                 "incidentConfiguration": {
+                  "createIncident": false,
                   "groupingConfiguration": {
                     "matchingMethod": "AllEntities",
                     "lookbackDuration": "PT5H",
                     "enabled": false,
                     "reopenClosedIncident": false
-                  },
-                  "createIncident": false
+                  }
                 }
               }
             },
@@ -1599,6 +1594,11 @@
                       "metricName": "System Status Alerts",
                       "legend": "DarktraceSystemStatusAlerts_CL",
                       "baseQuery": "DarktraceSystemStatusAlerts_CL"
+                    },
+                    {
+                      "metricName": "Total unified agent risk events received",
+                      "legend": "Darktrace SecureAI unified agent risk",
+                      "baseQuery": "UnifiedAgentRisk_CL"
                     }
                   ],
                   "sampleQueries": [
@@ -1635,6 +1635,10 @@
                     {
                       "name": "DarktraceSystemStatusAlerts_CL",
                       "lastDataReceivedQuery": "DarktraceSystemStatusAlerts_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+                    },
+                    {
+                      "name": "UnifiedAgentRisk_CL",
+                      "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
                     }
                   ],
                   "connectivityCriteria": [
@@ -2490,6 +2494,298 @@
                         "type": "string"
                       }
                     ]
+                  },
+                  "Custom-UnifiedAgentRisk_CL": {
+                    "columns": [
+                      {
+                        "name": "CustomerTenantId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "PartnerSchemaVersion",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventSchema",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventSchemaVersion",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventSubType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "SignalCategory",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventCount",
+                        "type": "int"
+                      },
+                      {
+                        "name": "EventUid",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventOriginalUid",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventVendor",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventProduct",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventStartTime",
+                        "type": "datetime"
+                      },
+                      {
+                        "name": "EventEndTime",
+                        "type": "datetime"
+                      },
+                      {
+                        "name": "SourceUpdatedTime",
+                        "type": "datetime"
+                      },
+                      {
+                        "name": "AlertName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventMessage",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventSeverity",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AlertStatus",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DetectionId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "RiskLevel",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityIdType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "RawData",
+                        "type": "dynamic"
+                      },
+                      {
+                        "name": "AlertStatusChangedTime",
+                        "type": "datetime"
+                      },
+                      {
+                        "name": "EventOriginalSeverity",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AlertOriginalStatus",
+                        "type": "string"
+                      },
+                      {
+                        "name": "RuleName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "RuleDescription",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DetectionMethod",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ThreatCategory",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ThreatConfidence",
+                        "type": "int"
+                      },
+                      {
+                        "name": "AttackTactics",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AttackTechniques",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityOriginalId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityOriginalIdType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EntityName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "IdentityType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AgentName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AgentPlatform",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AgentResourceUri",
+                        "type": "string"
+                      },
+                      {
+                        "name": "UserId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "UserIdType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "Username",
+                        "type": "string"
+                      },
+                      {
+                        "name": "UsernameType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DvcId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DvcIdType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventSessionId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AlertStatusReason",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AlertVerdict",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ThreatRiskLevel",
+                        "type": "int"
+                      },
+                      {
+                        "name": "AttackRemediationSteps",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AgentBlueprintId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ActorUserId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ActorUserIdType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ActorUsername",
+                        "type": "string"
+                      },
+                      {
+                        "name": "SrcIpAddr",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DvcMDEid",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DvcEntraId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ToolId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ToolName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ToolDescription",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ToolArguments",
+                        "type": "dynamic"
+                      },
+                      {
+                        "name": "ResourceId",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ResourceType",
+                        "type": "string"
+                      },
+                      {
+                        "name": "ResourceName",
+                        "type": "string"
+                      },
+                      {
+                        "name": "DataClassification",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventOriginalRequestDetails",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventOriginalResultDetails",
+                        "type": "string"
+                      },
+                      {
+                        "name": "EventReportUrl",
+                        "type": "string"
+                      },
+                      {
+                        "name": "AdditionalFields",
+                        "type": "dynamic"
+                      }
+                    ]
                   }
                 },
                 "destinations": {
@@ -2560,6 +2856,16 @@
                     ],
                     "transformKql": "source",
                     "outputStream": "Custom-DarktraceSystemStatusAlerts_CL"
+                  },
+                  {
+                    "streams": [
+                      "Custom-UnifiedAgentRisk_CL"
+                    ],
+                    "destinations": [
+                      "clv2ws1"
+                    ],
+                    "transformKql": "source | extend TimeGenerated = now()",
+                    "outputStream": "Custom-UnifiedAgentRisk_CL"
                   }
                 ]
               }
@@ -3277,6 +3583,312 @@
                   ]
                 }
               }
+            },
+            {
+              "name": "UnifiedAgentRisk_CL",
+              "apiVersion": "2022-10-01",
+              "type": "Microsoft.OperationalInsights/workspaces/tables",
+              "location": "[parameters('workspace-location')]",
+              "kind": null,
+              "properties": {
+                "schema": {
+                  "name": "UnifiedAgentRisk_CL",
+                  "columns": [
+                    {
+                      "name": "TimeGenerated",
+                      "type": "datetime"
+                    },
+                    {
+                      "name": "CustomerTenantId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "PartnerSchemaVersion",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventSchema",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventSchemaVersion",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventSubType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "SignalCategory",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventCount",
+                      "type": "int"
+                    },
+                    {
+                      "name": "EventUid",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventOriginalUid",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventVendor",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventProduct",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventStartTime",
+                      "type": "datetime"
+                    },
+                    {
+                      "name": "EventEndTime",
+                      "type": "datetime"
+                    },
+                    {
+                      "name": "SourceUpdatedTime",
+                      "type": "datetime"
+                    },
+                    {
+                      "name": "AlertName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventMessage",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventSeverity",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AlertStatus",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DetectionId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "RiskLevel",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityIdType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "RawData",
+                      "type": "dynamic"
+                    },
+                    {
+                      "name": "AlertStatusChangedTime",
+                      "type": "datetime"
+                    },
+                    {
+                      "name": "EventOriginalSeverity",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AlertOriginalStatus",
+                      "type": "string"
+                    },
+                    {
+                      "name": "RuleName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "RuleDescription",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DetectionMethod",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ThreatCategory",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ThreatConfidence",
+                      "type": "int"
+                    },
+                    {
+                      "name": "AttackTactics",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AttackTechniques",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityOriginalId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityOriginalIdType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EntityName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "IdentityType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AgentName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AgentPlatform",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AgentResourceUri",
+                      "type": "string"
+                    },
+                    {
+                      "name": "UserId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "UserIdType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "Username",
+                      "type": "string"
+                    },
+                    {
+                      "name": "UsernameType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DvcId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DvcIdType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventSessionId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AlertStatusReason",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AlertVerdict",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ThreatRiskLevel",
+                      "type": "int"
+                    },
+                    {
+                      "name": "AttackRemediationSteps",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AgentBlueprintId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ActorUserId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ActorUserIdType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ActorUsername",
+                      "type": "string"
+                    },
+                    {
+                      "name": "SrcIpAddr",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DvcMDEid",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DvcEntraId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ToolId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ToolName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ToolDescription",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ToolArguments",
+                      "type": "dynamic"
+                    },
+                    {
+                      "name": "ResourceId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ResourceType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "ResourceName",
+                      "type": "string"
+                    },
+                    {
+                      "name": "DataClassification",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventOriginalRequestDetails",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventOriginalResultDetails",
+                      "type": "string"
+                    },
+                    {
+                      "name": "EventReportUrl",
+                      "type": "string"
+                    },
+                    {
+                      "name": "AdditionalFields",
+                      "type": "dynamic"
+                    }
+                  ]
+                }
+              }
             }
           ]
         },
@@ -3331,6 +3943,11 @@
               "metricName": "System Status Alerts",
               "legend": "DarktraceSystemStatusAlerts_CL",
               "baseQuery": "DarktraceSystemStatusAlerts_CL"
+            },
+            {
+              "metricName": "Total unified agent risk events received",
+              "legend": "Darktrace SecureAI unified agent risk",
+              "baseQuery": "UnifiedAgentRisk_CL"
             }
           ],
           "sampleQueries": [
@@ -3367,6 +3984,10 @@
             {
               "name": "DarktraceSystemStatusAlerts_CL",
               "lastDataReceivedQuery": "DarktraceSystemStatusAlerts_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
+            },
+            {
+              "name": "UnifiedAgentRisk_CL",
+              "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
             }
           ],
           "connectivityCriteria": [
@@ -3684,1164 +4305,6 @@
       }
     },
     {
-      "type": "Microsoft.OperationalInsights/workspaces/providers/contentTemplates",
-      "apiVersion": "2023-04-01-preview",
-      "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/', variables('dataConnectorTemplateNameConnectorDefinition3'), variables('dataConnectorCCPVersion'))]",
-      "location": "[parameters('workspace-location')]",
-      "dependsOn": [
-        "[extensionResourceId(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspace')), 'Microsoft.SecurityInsights/contentPackages', variables('_solutionId'))]"
-      ],
-      "properties": {
-        "contentId": "[variables('_dataConnectorContentIdConnectorDefinition3')]",
-        "displayName": "Darktrace SecureAI Unified Agent Risk",
-        "contentKind": "DataConnector",
-        "mainTemplate": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "[variables('dataConnectorCCPVersion')]",
-          "parameters": {},
-          "variables": {},
-          "resources": [
-            {
-              "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',variables('_dataConnectorContentIdConnectorDefinition3'))]",
-              "apiVersion": "2022-09-01-preview",
-              "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectorDefinitions",
-              "location": "[parameters('workspace-location')]",
-              "kind": "Customizable",
-              "properties": {
-                "connectorUiConfig": {
-                  "id": "DarktraceSecureAIUnifiedAgentRisk",
-                  "title": "Darktrace SecureAI Unified Agent Risk",
-                  "publisher": "Darktrace",
-                  "descriptionMarkdown": "The [Darktrace SecureAI](https://darktrace.com) connector pushes normalized agent risk alerts directly into Microsoft Sentinel using the Codeless Connector Framework (CCF) Push pattern and the Azure Monitor Logs Ingestion API. Events are written to the `UnifiedAgentRisk_CL` table.",
-                  "graphQueriesTableName": "UnifiedAgentRisk_CL",
-                  "graphQueries": [
-                    {
-                      "metricName": "Total unified agent risk events received",
-                      "legend": "Darktrace SecureAI unified agent risk",
-                      "baseQuery": "UnifiedAgentRisk_CL"
-                    }
-                  ],
-                  "sampleQueries": [
-                    {
-                      "description": "Get the latest Darktrace SecureAI unified agent risk events",
-                      "query": "UnifiedAgentRisk_CL\n| sort by TimeGenerated desc\n| take 10"
-                    }
-                  ],
-                  "dataTypes": [
-                    {
-                      "name": "UnifiedAgentRisk_CL",
-                      "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
-                    }
-                  ],
-                  "connectivityCriteria": [
-                    {
-                      "type": "HasDataConnectors"
-                    }
-                  ],
-                  "availability": {
-                    "status": 1,
-                    "isPreview": false
-                  },
-                  "permissions": {
-                    "resourceProvider": [
-                      {
-                        "provider": "Microsoft.OperationalInsights/workspaces",
-                        "permissionsDisplayText": "Read and Write permissions are required.",
-                        "providerDisplayName": "Workspace",
-                        "scope": "Workspace",
-                        "requiredPermissions": {
-                          "write": true,
-                          "read": true,
-                          "delete": true
-                        }
-                      }
-                    ],
-                    "customs": [
-                      {
-                        "name": "Microsoft Entra",
-                        "description": "Permission to create an app registration in Microsoft Entra ID. Typically requires the Entra ID Application Developer role or higher."
-                      },
-                      {
-                        "name": "Microsoft Azure",
-                        "description": "Permission to assign the Monitoring Metrics Publisher role on the data collection rule (DCR). Typically requires Azure RBAC Owner or User Access Administrator role."
-                      },
-                      {
-                        "name": "Darktrace SecureAI",
-                        "description": "Permission to configure Microsoft Sentinel as a push destination in Darktrace SecureAI."
-                      }
-                    ]
-                  },
-                  "instructionSteps": [
-                    {
-                      "title": "1. Create Azure resources and provide the required permissions",
-                      "description": "This connector enables Darktrace SecureAI to push unified agent risk alerts directly to Microsoft Sentinel through the Azure Monitor Logs Ingestion API.",
-                      "instructions": [
-                        {
-                          "type": "Markdown",
-                          "parameters": {
-                            "content": "#### Automated configuration and secure data ingestion with a Microsoft Entra application\nSelecting **Deploy push connector resources** creates the `UnifiedAgentRisk_CL` Log Analytics table, a data collection rule (DCR), and a data collection endpoint (DCE). It also creates a Microsoft Entra application, grants it access to the DCR, and configures a client secret so Darktrace SecureAI can send events securely."
-                          }
-                        },
-                        {
-                          "type": "DeployPushConnectorButton",
-                          "parameters": {
-                            "label": "Deploy push connector resources",
-                            "applicationDisplayName": "Darktrace SecureAI Unified Agent Risk Connector"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "title": "2. Configure Microsoft Sentinel as a destination in Darktrace Platform Portal",
-                      "description": "Configure Darktrace SecureAI to send flat JSON records that follow the Unified Agent Risk schema. Use OAuth 2.0 client credentials and the values provided below.",
-                      "instructions": [
-                        {
-                          "parameters": {
-                            "label": "Tenant ID (Directory ID)",
-                            "fillWith": [
-                              "TenantId"
-                            ]
-                          },
-                          "type": "CopyableLabel"
-                        },
-                        {
-                          "parameters": {
-                            "label": "Entra App Registration Application ID",
-                            "fillWith": [
-                              "ApplicationId"
-                            ],
-                            "placeholder": "Deploy push connector to get the App Registration Application ID"
-                          },
-                          "type": "CopyableLabel"
-                        },
-                        {
-                          "parameters": {
-                            "label": "Entra App Registration Secret",
-                            "fillWith": [
-                              "ApplicationSecret"
-                            ],
-                            "placeholder": "Deploy push connector to get the App Registration Secret"
-                          },
-                          "type": "CopyableLabel"
-                        },
-                        {
-                          "parameters": {
-                            "label": "Data Collection Endpoint Uri",
-                            "fillWith": [
-                              "DataCollectionEndpoint"
-                            ],
-                            "placeholder": "Deploy push connector to get the Data Collection Endpoint Uri"
-                          },
-                          "type": "CopyableLabel"
-                        },
-                        {
-                          "parameters": {
-                            "label": "Data Collection Rule Immutable ID",
-                            "fillWith": [
-                              "DataCollectionRuleId"
-                            ],
-                            "placeholder": "Deploy push connector to get the Data Collection Rule Immutable ID"
-                          },
-                          "type": "CopyableLabel"
-                        },
-                        {
-                          "type": "CopyableLabel",
-                          "parameters": {
-                            "label": "Stream Name",
-                            "value": "Custom-UnifiedAgentRisk_CL"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',concat('DataConnector-', variables('_dataConnectorContentIdConnectorDefinition3')))]",
-              "apiVersion": "2022-01-01-preview",
-              "type": "Microsoft.OperationalInsights/workspaces/providers/metadata",
-              "properties": {
-                "parentId": "[extensionResourceId(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspace')), 'Microsoft.SecurityInsights/dataConnectorDefinitions', variables('_dataConnectorContentIdConnectorDefinition3'))]",
-                "contentId": "[variables('_dataConnectorContentIdConnectorDefinition3')]",
-                "kind": "DataConnector",
-                "version": "[variables('dataConnectorCCPVersion')]",
-                "source": {
-                  "sourceId": "[variables('_solutionId')]",
-                  "name": "[variables('_solutionName')]",
-                  "kind": "Solution"
-                },
-                "author": {
-                  "name": "Darktrace",
-                  "email": "[variables('_email')]"
-                },
-                "support": {
-                  "tier": "Partner",
-                  "name": "Darktrace",
-                  "email": "customers@darktrace.com",
-                  "link": "https://www.darktrace.com/contact/"
-                },
-                "dependencies": {
-                  "criteria": [
-                    {
-                      "version": "[variables('dataConnectorCCPVersion')]",
-                      "contentId": "[variables('_dataConnectorContentIdConnections3')]",
-                      "kind": "ResourcesDataConnector"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "DarktraceSecureAI-DCR",
-              "apiVersion": "2022-06-01",
-              "type": "Microsoft.Insights/dataCollectionRules",
-              "location": "[parameters('workspace-location')]",
-              "kind": "[variables('blanks')]",
-              "properties": {
-                "dataCollectionEndpointId": "[variables('dataCollectionEndpointId3')]",
-                "streamDeclarations": {
-                  "Custom-UnifiedAgentRisk_CL": {
-                    "columns": [
-                      {
-                        "name": "CustomerTenantId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "PartnerSchemaVersion",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventSchema",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventSchemaVersion",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventSubType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "SignalCategory",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventCount",
-                        "type": "int"
-                      },
-                      {
-                        "name": "EventUid",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventOriginalUid",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventVendor",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventProduct",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventStartTime",
-                        "type": "datetime"
-                      },
-                      {
-                        "name": "EventEndTime",
-                        "type": "datetime"
-                      },
-                      {
-                        "name": "SourceUpdatedTime",
-                        "type": "datetime"
-                      },
-                      {
-                        "name": "AlertName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventMessage",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventSeverity",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AlertStatus",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DetectionId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "RiskLevel",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityIdType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "RawData",
-                        "type": "dynamic"
-                      },
-                      {
-                        "name": "AlertStatusChangedTime",
-                        "type": "datetime"
-                      },
-                      {
-                        "name": "EventOriginalSeverity",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AlertOriginalStatus",
-                        "type": "string"
-                      },
-                      {
-                        "name": "RuleName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "RuleDescription",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DetectionMethod",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ThreatCategory",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ThreatConfidence",
-                        "type": "int"
-                      },
-                      {
-                        "name": "AttackTactics",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AttackTechniques",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityOriginalId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityOriginalIdType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EntityName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "IdentityType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AgentName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AgentPlatform",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AgentResourceUri",
-                        "type": "string"
-                      },
-                      {
-                        "name": "UserId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "UserIdType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "Username",
-                        "type": "string"
-                      },
-                      {
-                        "name": "UsernameType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DvcId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DvcIdType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventSessionId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AlertStatusReason",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AlertVerdict",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ThreatRiskLevel",
-                        "type": "int"
-                      },
-                      {
-                        "name": "AttackRemediationSteps",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AgentBlueprintId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ActorUserId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ActorUserIdType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ActorUsername",
-                        "type": "string"
-                      },
-                      {
-                        "name": "SrcIpAddr",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DvcMDEid",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DvcEntraId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ToolId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ToolName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ToolDescription",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ToolArguments",
-                        "type": "dynamic"
-                      },
-                      {
-                        "name": "ResourceId",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ResourceType",
-                        "type": "string"
-                      },
-                      {
-                        "name": "ResourceName",
-                        "type": "string"
-                      },
-                      {
-                        "name": "DataClassification",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventOriginalRequestDetails",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventOriginalResultDetails",
-                        "type": "string"
-                      },
-                      {
-                        "name": "EventReportUrl",
-                        "type": "string"
-                      },
-                      {
-                        "name": "AdditionalFields",
-                        "type": "dynamic"
-                      }
-                    ]
-                  }
-                },
-                "destinations": {
-                  "logAnalytics": [
-                    {
-                      "workspaceResourceId": "[variables('workspaceResourceId')]",
-                      "name": "clv2ws1"
-                    }
-                  ]
-                },
-                "dataFlows": [
-                  {
-                    "streams": [
-                      "Custom-UnifiedAgentRisk_CL"
-                    ],
-                    "destinations": [
-                      "clv2ws1"
-                    ],
-                    "transformKql": "source | extend TimeGenerated = now()",
-                    "outputStream": "Custom-UnifiedAgentRisk_CL"
-                  }
-                ]
-              }
-            },
-            {
-              "name": "UnifiedAgentRisk_CL",
-              "apiVersion": "2022-10-01",
-              "type": "Microsoft.OperationalInsights/workspaces/tables",
-              "location": "[parameters('workspace-location')]",
-              "kind": null,
-              "properties": {
-                "schema": {
-                  "name": "UnifiedAgentRisk_CL",
-                  "columns": [
-                    {
-                      "name": "TimeGenerated",
-                      "type": "datetime"
-                    },
-                    {
-                      "name": "CustomerTenantId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "PartnerSchemaVersion",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventSchema",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventSchemaVersion",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventSubType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "SignalCategory",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventCount",
-                      "type": "int"
-                    },
-                    {
-                      "name": "EventUid",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventOriginalUid",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventVendor",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventProduct",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventStartTime",
-                      "type": "datetime"
-                    },
-                    {
-                      "name": "EventEndTime",
-                      "type": "datetime"
-                    },
-                    {
-                      "name": "SourceUpdatedTime",
-                      "type": "datetime"
-                    },
-                    {
-                      "name": "AlertName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventMessage",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventSeverity",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AlertStatus",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DetectionId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "RiskLevel",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityIdType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "RawData",
-                      "type": "dynamic"
-                    },
-                    {
-                      "name": "AlertStatusChangedTime",
-                      "type": "datetime"
-                    },
-                    {
-                      "name": "EventOriginalSeverity",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AlertOriginalStatus",
-                      "type": "string"
-                    },
-                    {
-                      "name": "RuleName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "RuleDescription",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DetectionMethod",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ThreatCategory",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ThreatConfidence",
-                      "type": "int"
-                    },
-                    {
-                      "name": "AttackTactics",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AttackTechniques",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityOriginalId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityOriginalIdType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EntityName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "IdentityType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AgentName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AgentPlatform",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AgentResourceUri",
-                      "type": "string"
-                    },
-                    {
-                      "name": "UserId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "UserIdType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "Username",
-                      "type": "string"
-                    },
-                    {
-                      "name": "UsernameType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DvcId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DvcIdType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventSessionId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AlertStatusReason",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AlertVerdict",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ThreatRiskLevel",
-                      "type": "int"
-                    },
-                    {
-                      "name": "AttackRemediationSteps",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AgentBlueprintId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ActorUserId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ActorUserIdType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ActorUsername",
-                      "type": "string"
-                    },
-                    {
-                      "name": "SrcIpAddr",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DvcMDEid",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DvcEntraId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ToolId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ToolName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ToolDescription",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ToolArguments",
-                      "type": "dynamic"
-                    },
-                    {
-                      "name": "ResourceId",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ResourceType",
-                      "type": "string"
-                    },
-                    {
-                      "name": "ResourceName",
-                      "type": "string"
-                    },
-                    {
-                      "name": "DataClassification",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventOriginalRequestDetails",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventOriginalResultDetails",
-                      "type": "string"
-                    },
-                    {
-                      "name": "EventReportUrl",
-                      "type": "string"
-                    },
-                    {
-                      "name": "AdditionalFields",
-                      "type": "dynamic"
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "packageKind": "Solution",
-        "packageVersion": "[variables('_solutionVersion')]",
-        "packageName": "[variables('_solutionName')]",
-        "contentProductId": "[concat(take(variables('_solutionId'), 50),'-','dc','-', uniqueString(concat(variables('_solutionId'),'-','DataConnector','-',variables('_dataConnectorContentIdConnectorDefinition3'),'-', variables('dataConnectorCCPVersion'))))]",
-        "packageId": "[variables('_solutionId')]",
-        "contentSchemaVersion": "3.0.0",
-        "version": "[variables('dataConnectorCCPVersion')]"
-      }
-    },
-    {
-      "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',variables('_dataConnectorContentIdConnectorDefinition3'))]",
-      "apiVersion": "2022-09-01-preview",
-      "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectorDefinitions",
-      "location": "[parameters('workspace-location')]",
-      "kind": "Customizable",
-      "properties": {
-        "connectorUiConfig": {
-          "id": "DarktraceSecureAIUnifiedAgentRisk",
-          "title": "Darktrace SecureAI Unified Agent Risk",
-          "publisher": "Darktrace",
-          "descriptionMarkdown": "The [Darktrace SecureAI](https://darktrace.com) connector pushes normalized agent risk alerts directly into Microsoft Sentinel using the Codeless Connector Framework (CCF) Push pattern and the Azure Monitor Logs Ingestion API. Events are written to the `UnifiedAgentRisk_CL` table.",
-          "graphQueriesTableName": "UnifiedAgentRisk_CL",
-          "graphQueries": [
-            {
-              "metricName": "Total unified agent risk events received",
-              "legend": "Darktrace SecureAI unified agent risk",
-              "baseQuery": "UnifiedAgentRisk_CL"
-            }
-          ],
-          "sampleQueries": [
-            {
-              "description": "Get the latest Darktrace SecureAI unified agent risk events",
-              "query": "UnifiedAgentRisk_CL\n| sort by TimeGenerated desc\n| take 10"
-            }
-          ],
-          "dataTypes": [
-            {
-              "name": "UnifiedAgentRisk_CL",
-              "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
-            }
-          ],
-          "connectivityCriteria": [
-            {
-              "type": "HasDataConnectors"
-            }
-          ],
-          "availability": {
-            "status": 1,
-            "isPreview": false
-          },
-          "permissions": {
-            "resourceProvider": [
-              {
-                "provider": "Microsoft.OperationalInsights/workspaces",
-                "permissionsDisplayText": "Read and Write permissions are required.",
-                "providerDisplayName": "Workspace",
-                "scope": "Workspace",
-                "requiredPermissions": {
-                  "write": true,
-                  "read": true,
-                  "delete": true
-                }
-              }
-            ],
-            "customs": [
-              {
-                "name": "Microsoft Entra",
-                "description": "Permission to create an app registration in Microsoft Entra ID. Typically requires the Entra ID Application Developer role or higher."
-              },
-              {
-                "name": "Microsoft Azure",
-                "description": "Permission to assign the Monitoring Metrics Publisher role on the data collection rule (DCR). Typically requires Azure RBAC Owner or User Access Administrator role."
-              },
-              {
-                "name": "Darktrace SecureAI",
-                "description": "Permission to configure Microsoft Sentinel as a push destination in Darktrace SecureAI."
-              }
-            ]
-          },
-          "instructionSteps": [
-            {
-              "title": "1. Create Azure resources and provide the required permissions",
-              "description": "This connector enables Darktrace SecureAI to push unified agent risk alerts directly to Microsoft Sentinel through the Azure Monitor Logs Ingestion API.",
-              "instructions": [
-                {
-                  "type": "Markdown",
-                  "parameters": {
-                    "content": "#### Automated configuration and secure data ingestion with a Microsoft Entra application\nSelecting **Deploy push connector resources** creates the `UnifiedAgentRisk_CL` Log Analytics table, a data collection rule (DCR), and a data collection endpoint (DCE). It also creates a Microsoft Entra application, grants it access to the DCR, and configures a client secret so Darktrace SecureAI can send events securely."
-                  }
-                },
-                {
-                  "type": "DeployPushConnectorButton",
-                  "parameters": {
-                    "label": "Deploy push connector resources",
-                    "applicationDisplayName": "Darktrace SecureAI Unified Agent Risk Connector"
-                  }
-                }
-              ]
-            },
-            {
-              "title": "2. Configure Microsoft Sentinel as a destination in Darktrace Platform Portal",
-              "description": "Configure Darktrace SecureAI to send flat JSON records that follow the Unified Agent Risk schema. Use OAuth 2.0 client credentials and the values provided below.",
-              "instructions": [
-                {
-                  "parameters": {
-                    "label": "Tenant ID (Directory ID)",
-                    "fillWith": [
-                      "TenantId"
-                    ]
-                  },
-                  "type": "CopyableLabel"
-                },
-                {
-                  "parameters": {
-                    "label": "Entra App Registration Application ID",
-                    "fillWith": [
-                      "ApplicationId"
-                    ],
-                    "placeholder": "Deploy push connector to get the App Registration Application ID"
-                  },
-                  "type": "CopyableLabel"
-                },
-                {
-                  "parameters": {
-                    "label": "Entra App Registration Secret",
-                    "fillWith": [
-                      "ApplicationSecret"
-                    ],
-                    "placeholder": "Deploy push connector to get the App Registration Secret"
-                  },
-                  "type": "CopyableLabel"
-                },
-                {
-                  "parameters": {
-                    "label": "Data Collection Endpoint Uri",
-                    "fillWith": [
-                      "DataCollectionEndpoint"
-                    ],
-                    "placeholder": "Deploy push connector to get the Data Collection Endpoint Uri"
-                  },
-                  "type": "CopyableLabel"
-                },
-                {
-                  "parameters": {
-                    "label": "Data Collection Rule Immutable ID",
-                    "fillWith": [
-                      "DataCollectionRuleId"
-                    ],
-                    "placeholder": "Deploy push connector to get the Data Collection Rule Immutable ID"
-                  },
-                  "type": "CopyableLabel"
-                },
-                {
-                  "type": "CopyableLabel",
-                  "parameters": {
-                    "label": "Stream Name",
-                    "value": "Custom-UnifiedAgentRisk_CL"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',concat('DataConnector-', variables('_dataConnectorContentIdConnectorDefinition3')))]",
-      "apiVersion": "2022-01-01-preview",
-      "type": "Microsoft.OperationalInsights/workspaces/providers/metadata",
-      "properties": {
-        "parentId": "[extensionResourceId(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspace')), 'Microsoft.SecurityInsights/dataConnectorDefinitions', variables('_dataConnectorContentIdConnectorDefinition3'))]",
-        "contentId": "[variables('_dataConnectorContentIdConnectorDefinition3')]",
-        "kind": "DataConnector",
-        "version": "[variables('dataConnectorCCPVersion')]",
-        "source": {
-          "sourceId": "[variables('_solutionId')]",
-          "name": "[variables('_solutionName')]",
-          "kind": "Solution"
-        },
-        "author": {
-          "name": "Darktrace",
-          "email": "[variables('_email')]"
-        },
-        "support": {
-          "tier": "Partner",
-          "name": "Darktrace",
-          "email": "customers@darktrace.com",
-          "link": "https://www.darktrace.com/contact/"
-        },
-        "dependencies": {
-          "criteria": [
-            {
-              "version": "[variables('dataConnectorCCPVersion')]",
-              "contentId": "[variables('_dataConnectorContentIdConnections3')]",
-              "kind": "ResourcesDataConnector"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "type": "Microsoft.OperationalInsights/workspaces/providers/contentTemplates",
-      "apiVersion": "2023-04-01-preview",
-      "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/', variables('dataConnectorTemplateNameConnections3'), variables('dataConnectorCCPVersion'))]",
-      "location": "[parameters('workspace-location')]",
-      "dependsOn": [
-        "[extensionResourceId(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspace')), 'Microsoft.SecurityInsights/contentPackages', variables('_solutionId'))]"
-      ],
-      "properties": {
-        "contentId": "[variables('_dataConnectorContentIdConnections3')]",
-        "displayName": "Darktrace SecureAI Unified Agent Risk",
-        "contentKind": "ResourcesDataConnector",
-        "mainTemplate": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "[variables('dataConnectorCCPVersion')]",
-          "parameters": {
-            "guidValue": {
-              "defaultValue": "[[newGuid()]",
-              "type": "securestring"
-            },
-            "innerWorkspace": {
-              "defaultValue": "[parameters('workspace')]",
-              "type": "securestring"
-            },
-            "auth": {
-              "type": "object",
-              "defaultValue": {
-                "appId": "[[parameters('auth').appId]]",
-                "servicePrincipalId": "[[parameters('auth').servicePrincipalId]]"
-              }
-            },
-            "connectorDefinitionName": {
-              "defaultValue": "Darktrace SecureAI Unified Agent Risk",
-              "type": "securestring",
-              "minLength": 1
-            },
-            "workspace": {
-              "defaultValue": "[parameters('workspace')]",
-              "type": "securestring"
-            },
-            "dcrConfig": {
-              "defaultValue": {
-                "dataCollectionEndpoint": "data collection Endpoint",
-                "dataCollectionRuleImmutableId": "data collection rule immutableId"
-              },
-              "type": "object"
-            }
-          },
-          "variables": {
-            "_dataConnectorContentIdConnections3": "[variables('_dataConnectorContentIdConnections3')]"
-          },
-          "resources": [
-            {
-              "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/',concat('DataConnector-', variables('_dataConnectorContentIdConnections3')))]",
-              "apiVersion": "2022-01-01-preview",
-              "type": "Microsoft.OperationalInsights/workspaces/providers/metadata",
-              "properties": {
-                "parentId": "[extensionResourceId(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspace')), 'Microsoft.SecurityInsights/dataConnectors', variables('_dataConnectorContentIdConnections3'))]",
-                "contentId": "[variables('_dataConnectorContentIdConnections3')]",
-                "kind": "ResourcesDataConnector",
-                "version": "[variables('dataConnectorCCPVersion')]",
-                "source": {
-                  "sourceId": "[variables('_solutionId')]",
-                  "name": "[variables('_solutionName')]",
-                  "kind": "Solution"
-                },
-                "author": {
-                  "name": "Darktrace",
-                  "email": "[variables('_email')]"
-                },
-                "support": {
-                  "tier": "Partner",
-                  "name": "Darktrace",
-                  "email": "customers@darktrace.com",
-                  "link": "https://www.darktrace.com/contact/"
-                }
-              }
-            },
-            {
-              "name": "[[concat(parameters('innerWorkspace'),'/Microsoft.SecurityInsights/', 'DarktraceSecureAI', parameters('guidValue'))]",
-              "apiVersion": "2023-02-01-preview",
-              "type": "Microsoft.OperationalInsights/workspaces/providers/dataConnectors",
-              "location": "[parameters('workspace-location')]",
-              "kind": "Push",
-              "properties": {
-                "connectorDefinitionName": "DarktraceSecureAIUnifiedAgentRisk",
-                "dcrConfig": {
-                  "dataCollectionEndpoint": "[[parameters('dcrConfig').dataCollectionEndpoint]",
-                  "dataCollectionRuleImmutableId": "[[parameters('dcrConfig').dataCollectionRuleImmutableId]",
-                  "streamName": "Custom-UnifiedAgentRisk_CL"
-                },
-                "auth": {
-                  "type": "Push",
-                  "appId": "[[parameters('auth').appId]",
-                  "servicePrincipalId": "[[parameters('auth').servicePrincipalId]"
-                },
-                "request": {
-                  "RetryCount": 1
-                },
-                "response": {
-                  "eventsJsonPaths": [
-                    "$.messages"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        "packageKind": "Solution",
-        "packageVersion": "[variables('_solutionVersion')]",
-        "packageName": "[variables('_solutionName')]",
-        "contentProductId": "[concat(take(variables('_solutionId'), 50),'-','rdc','-', uniqueString(concat(variables('_solutionId'),'-','ResourcesDataConnector','-',variables('_dataConnectorContentIdConnections3'),'-', variables('dataConnectorCCPVersion'))))]",
-        "packageId": "[variables('_solutionId')]",
-        "contentSchemaVersion": "3.0.0",
-        "version": "[variables('dataConnectorCCPVersion')]"
-      }
-    },
-    {
       "type": "Microsoft.OperationalInsights/workspaces/providers/contentPackages",
       "apiVersion": "2023-04-01-preview",
       "location": "[parameters('workspace-location')]",
@@ -4851,7 +4314,7 @@
         "contentSchemaVersion": "3.0.0",
         "displayName": "Darktrace",
         "publisherDisplayName": "Darktrace",
-        "descriptionHtml": "<p><strong>Note:</strong> Please refer to the following before installing the solution:</p>\n<p>• Review the solution <a href=\"https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/Darktrace/ReleaseNotes.md\">Release Notes</a></p>\n<p>• There may be <a href=\"https://aka.ms/sentinelsolutionsknownissues\">known issues</a> pertaining to this Solution, please refer to them before installing.</p>\n<p>The <a href=\"https://darktrace.com/\">Darktrace</a> Microsoft Sentinel Solution lets users connect Darktrace AI-based alerting in real-time with Microsoft Sentinel, allowing creation of custom Dashboards, Workbooks, Notebooks and Custom Alerts to improve investigation. Microsoft Sentinel's enhanced visibility into Darktrace logs enables monitoring and mitigation of security threats.</p>\n<p><strong>Underlying Microsoft Technologies used:</strong></p>\n<p>This solution takes a dependency on the following technologies, and some of these dependencies either may be in <a href=\"https://azure.microsoft.com/support/legal/preview-supplemental-terms/\">Preview</a> state or might result in additional ingestion or operational costs:</p>\n<ol type=\"a\">\n<li><a href=\"https://docs.microsoft.com/azure/sentinel/connect-rest-api-template\">Microsoft Sentinel Data Collector API</a></li>\n</ol>\n<p>For more details about this solution refer to <a href=\"https://customerportal.darktrace.com/guides\">Darktrace Customer Portal</a></p>\n<p><strong>Data Connectors:</strong> 3, <strong>Workbooks:</strong> 2, <strong>Analytic Rules:</strong> 5</p>\n<p><a href=\"https://aka.ms/azuresentinel\">Learn more about Microsoft Sentinel</a> | <a href=\"https://aka.ms/azuresentinelsolutionsdoc\">Learn more about Solutions</a></p>\n",
+        "descriptionHtml": "<p><strong>Note:</strong> Please refer to the following before installing the solution:</p>\n<p>• Review the solution <a href=\"https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/Darktrace/ReleaseNotes.md\">Release Notes</a></p>\n<p>• There may be <a href=\"https://aka.ms/sentinelsolutionsknownissues\">known issues</a> pertaining to this Solution, please refer to them before installing.</p>\n<p>The <a href=\"https://darktrace.com/\">Darktrace</a> Microsoft Sentinel Solution lets users connect Darktrace AI-based alerting in real-time with Microsoft Sentinel, allowing creation of custom Dashboards, Workbooks, Notebooks and Custom Alerts to improve investigation. Microsoft Sentinel's enhanced visibility into Darktrace logs enables monitoring and mitigation of security threats.</p>\n<p><strong>Underlying Microsoft Technologies used:</strong></p>\n<p>This solution takes a dependency on the following technologies, and some of these dependencies either may be in <a href=\"https://azure.microsoft.com/support/legal/preview-supplemental-terms/\">Preview</a> state or might result in additional ingestion or operational costs:</p>\n<ol type=\"a\">\n<li><a href=\"https://docs.microsoft.com/azure/sentinel/connect-rest-api-template\">Microsoft Sentinel Data Collector API</a></li>\n</ol>\n<p>For more details about this solution refer to <a href=\"https://customerportal.darktrace.com/guides\">Darktrace Customer Portal</a></p>\n<p><strong>Data Connectors:</strong> 2, <strong>Workbooks:</strong> 2, <strong>Analytic Rules:</strong> 5</p>\n<p><a href=\"https://aka.ms/azuresentinel\">Learn more about Microsoft Sentinel</a> | <a href=\"https://aka.ms/azuresentinelsolutionsdoc\">Learn more about Solutions</a></p>\n",
         "contentKind": "Solution",
         "contentProductId": "[variables('_solutioncontentProductId')]",
         "id": "[variables('_solutioncontentProductId')]",
@@ -4919,11 +4382,6 @@
             {
               "kind": "DataConnector",
               "contentId": "[variables('_dataConnectorContentIdConnections2')]",
-              "version": "[variables('dataConnectorCCPVersion')]"
-            },
-            {
-              "kind": "DataConnector",
-              "contentId": "[variables('_dataConnectorContentIdConnections3')]",
               "version": "[variables('dataConnectorCCPVersion')]"
             }
           ]
