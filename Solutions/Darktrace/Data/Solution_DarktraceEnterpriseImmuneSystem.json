@@ -20,7 +20,7 @@
     "Data Connectors/platformPortal/DarktracePlatformPortal_ConnectorDefinition.json"
   ],
   "BasePath": "C:\\GitHub\\Azure-Sentinel\\Solutions\\Darktrace",
-  "Version": "3.1.0",
+  "Version": "3.2.0",
   "Metadata": "SolutionMetadata.json",
   "TemplateSpec": false,
   "Is1PConnector": false

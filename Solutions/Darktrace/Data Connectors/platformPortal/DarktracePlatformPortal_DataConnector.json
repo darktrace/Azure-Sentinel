@@ -4,7 +4,7 @@
   "type": "Microsoft.SecurityInsights/dataConnectors",
   "kind": "Push",
   "properties": {
-    "connectorDefinitionName": "DarktracePlatformPortal",
+    "connectorDefinitionName": "DarktracePlatformPortalConnector",
     "dcrConfig": {
       "streamName": "Custom-UnifiedAgentRisk_CL",
       "dataCollectionEndpoint": "[[parameters('dcrConfig').dataCollectionEndpoint]",
