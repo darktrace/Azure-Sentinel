@@ -9,31 +9,31 @@
         "id": "DarktracePlatformPortalConnector",
         "title": "Darktrace Platform Portal Connector",
         "publisher": "Darktrace",
-        "descriptionMarkdown": "The Darktrace Platform Portal connector provides the capability to read raw event data from Darktrace Platform Portal in Microsoft Sentinel.",
+        "descriptionMarkdown": "The Darktrace Platform Portal connector pushes normalized Secure AI agent risk events into the Microsoft-managed `PartnerRiskEvents` shared table in Microsoft Sentinel using the Azure Monitor Logs Ingestion API. Send records with `EventVendor` set to `Darktrace`.",
         "graphQueries": [
           {
             "metricName": "Total unified agent risk events received",
             "legend": "Darktrace Secure AI unified agent risk",
-            "baseQuery": "UnifiedAgentRisk_CL"
+            "baseQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\""
           }
         ],
         "sampleQueries": [
           {
             "description": "Darktrace - All Secure AI alerts",
-            "query": "UnifiedAgentRisk_CL\n | sort by TimeGenerated desc"
+            "query": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| sort by TimeGenerated desc"
           }
         ],
         "dataTypes": [
           {
-            "name": "UnifiedAgentRisk_CL",
-            "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
+            "name": "PartnerRiskEvents",
+            "lastDataReceivedQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
           }
         ],
         "connectivityCriteria": [
           {
             "type": "IsConnectedQuery",
             "value": [
-              "UnifiedAgentRisk_CL\n            | summarize LastLogReceived = max(TimeGenerated)\n            | project IsConnected = LastLogReceived > ago(7d)"
+              "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| summarize LastLogReceived = max(TimeGenerated)\n| project IsConnected = LastLogReceived > ago(7d)"
             ]
           }
         ],
@@ -68,12 +68,12 @@
         "instructionSteps": [
           {
             "title": "1. Create ARM Resources and Provide the Required Permissions",
-            "description": "This connector reads data from the tables that Darktrace uses in a Microsoft Analytics Workspace, if the Microsoft Sentinel Log Ingestion configuration is enabled in Darktrace then raw event data is sent to the Microsoft Sentinel Ingestion API.",
+            "description": "Enable the Microsoft Sentinel Log Ingestion configuration in Darktrace to push normalized Secure AI agent risk events through the Azure Monitor Logs Ingestion API into PartnerRiskEvents.",
             "instructions": [
               {
                 "type": "Markdown",
                 "parameters": {
-                  "content": "#### Automated Configuration and Secure Data Ingestion with Entra Application \nClicking on \"Deploy\" will trigger the creation of Log Analytics tables and a Data Collection Rule (DCR). \nIt will then create an Entra application, link the DCR to it, and set the entered secret in the application. This setup enables data to be sent securely to the DCR using an Entra token."
+                  "content": "#### Automated Configuration and Secure Data Ingestion with Entra Application\nClicking **Deploy** creates a Data Collection Endpoint (DCE) and a Data Collection Rule (DCR) targeting the Microsoft-managed `PartnerRiskEvents` shared table. It then creates a Microsoft Entra application, grants it access to the DCR, and configures a client secret for secure ingestion.\n\nThe `PartnerRiskEvents` table must be available in the target workspace. This connector does not create a custom table or define the shared table's schema. Existing data in custom tables is not migrated or deleted."
                 }
               },
               {
@@ -87,7 +87,7 @@
           },
           {
             "title": "2. Push your logs into the workspace",
-            "description": "Use the following parameters to configure the your machine to send the logs to the workspace.",
+            "description": "Use the following parameters to configure Darktrace to send normalized JSON records with EventVendor set to Darktrace. Keep the Custom-UnifiedAgentRisk_CL input stream and the ResourceId, ResourceType, and ResourceName fields in your payload. The DCR renames these fields to TargetResourceId, TargetResourceType, and TargetResourceName in PartnerRiskEvents.",
             "instructions": [
               {
                 "parameters": {
@@ -135,6 +135,13 @@
                     "DataCollectionRuleId"
                   ],
                   "placeholder": "Deploy push connector to get the Data Collection Rule Immutable ID"
+                },
+                "type": "CopyableLabel"
+              },
+              {
+                "parameters": {
+                  "label": "Stream Name",
+                  "value": "Custom-UnifiedAgentRisk_CL"
                 },
                 "type": "CopyableLabel"
               }

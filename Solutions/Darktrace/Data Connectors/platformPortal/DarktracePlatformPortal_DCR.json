@@ -99,8 +99,8 @@
                 "destinations": [
                 "clv2ws1"
                 ],
-                "transformKql": "source | extend TimeGenerated = now()",
-                "outputStream": "Custom-UnifiedAgentRisk_CL"
+                "transformKql": "source | extend TimeGenerated = now() | project-rename TargetResourceId = ResourceId, TargetResourceType = ResourceType, TargetResourceName = ResourceName",
+                "outputStream": "Microsoft-PartnerRiskEvents"
             }
         ]
     }

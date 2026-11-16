@@ -44,7 +44,7 @@
           {
             "metricName": "Total unified agent risk events received",
             "legend": "Darktrace SecureAI unified agent risk",
-            "baseQuery": "UnifiedAgentRisk_CL"
+            "baseQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\""
           }
         ],
         "sampleQueries": [
@@ -83,8 +83,8 @@
             "lastDataReceivedQuery": "DarktraceSystemStatusAlerts_CL\n            | summarize Time = max(TimeGenerated)\n            | where isnotempty(Time)"
           },
           {
-            "name": "UnifiedAgentRisk_CL",
-            "lastDataReceivedQuery": "UnifiedAgentRisk_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
+            "name": "PartnerRiskEvents",
+            "lastDataReceivedQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
           }
         ],
         "connectivityCriteria": [

@@ -2,6 +2,7 @@
 	"publisherId": "darktrace1655286944672",
 	"offerId": "darktrace_for_sentinel",
 	"firstPublishDate": "2022-05-02",
+	"version": "3.2.0",
 	"providers": [ "Darktrace" ],
 	"categories": {
 		"domains": [ "Security - Threat Protection" ]
