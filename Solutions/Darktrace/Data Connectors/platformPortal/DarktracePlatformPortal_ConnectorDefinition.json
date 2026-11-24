@@ -9,31 +9,44 @@
         "id": "DarktracePlatformPortalConnector",
         "title": "Darktrace Platform Portal Connector",
         "publisher": "Darktrace",
-        "descriptionMarkdown": "The Darktrace Platform Portal connector pushes normalized Secure AI agent risk events into the Microsoft-managed `PartnerRiskEvents` shared table in Microsoft Sentinel using the Azure Monitor Logs Ingestion API. Send records with `EventVendor` set to `Darktrace`.",
+        "descriptionMarkdown": "The Darktrace Platform Portal connector pushes alerts from the Darktrace Platform Portal into Microsoft Sentinel using the Azure Monitor Logs Ingestion API. Normalized Secure AI agent risk events go to the Microsoft-managed `PartnerRiskEvents` shared table (send records with `EventVendor` set to `Darktrace`), and model alerts go to the `DarktracePlatformModelAlerts_CL` custom table.",
         "graphQueries": [
           {
             "metricName": "Total unified agent risk events received",
             "legend": "Darktrace Secure AI unified agent risk",
             "baseQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\""
+          },
+          {
+            "metricName": "Total model alerts received",
+            "legend": "Darktrace Platform Portal model alerts",
+            "baseQuery": "DarktracePlatformModelAlerts_CL"
           }
         ],
         "sampleQueries": [
           {
             "description": "Darktrace - All Secure AI alerts",
             "query": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| sort by TimeGenerated desc"
+          },
+          {
+            "description": "Darktrace - All Platform Portal model alerts",
+            "query": "DarktracePlatformModelAlerts_CL\n| sort by TimeGenerated desc"
           }
         ],
         "dataTypes": [
           {
             "name": "PartnerRiskEvents",
             "lastDataReceivedQuery": "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
+          },
+          {
+            "name": "DarktracePlatformModelAlerts_CL",
+            "lastDataReceivedQuery": "DarktracePlatformModelAlerts_CL\n| where TimeGenerated > ago(7d)\n| summarize Time = max(TimeGenerated)\n| where isnotempty(Time)"
           }
         ],
         "connectivityCriteria": [
           {
             "type": "IsConnectedQuery",
             "value": [
-              "PartnerRiskEvents\n| where EventVendor == \"Darktrace\"\n| summarize LastLogReceived = max(TimeGenerated)\n| project IsConnected = LastLogReceived > ago(7d)"
+              "union isfuzzy=true (PartnerRiskEvents | where EventVendor == \"Darktrace\"), DarktracePlatformModelAlerts_CL\n| summarize LastLogReceived = max(TimeGenerated)\n| project IsConnected = LastLogReceived > ago(7d)"
             ]
           }
         ],
@@ -68,12 +81,12 @@
         "instructionSteps": [
           {
             "title": "1. Create ARM Resources and Provide the Required Permissions",
-            "description": "Enable the Microsoft Sentinel Log Ingestion configuration in Darktrace to push normalized Secure AI agent risk events through the Azure Monitor Logs Ingestion API into PartnerRiskEvents.",
+            "description": "Enable the Microsoft Sentinel Log Ingestion configuration in Darktrace to push Secure AI agent risk events into PartnerRiskEvents and model alerts into DarktracePlatformModelAlerts_CL through the Azure Monitor Logs Ingestion API.",
             "instructions": [
               {
                 "type": "Markdown",
                 "parameters": {
-                  "content": "#### Automated Configuration and Secure Data Ingestion with Entra Application\nClicking **Deploy** creates a Data Collection Endpoint (DCE) and a Data Collection Rule (DCR) targeting the Microsoft-managed `PartnerRiskEvents` shared table. It then creates a Microsoft Entra application, grants it access to the DCR, and configures a client secret for secure ingestion.\n\nThe `PartnerRiskEvents` table must be available in the target workspace. This connector does not create a custom table or define the shared table's schema. Existing data in custom tables is not migrated or deleted."
+                  "content": "#### Automated Configuration and Secure Data Ingestion with Entra Application\nClicking **Deploy** creates a Data Collection Endpoint (DCE) and a Data Collection Rule (DCR) with two flows: Secure AI agent risk events to the Microsoft-managed `PartnerRiskEvents` shared table, and model alerts to the `DarktracePlatformModelAlerts_CL` custom table. It then creates a Microsoft Entra application, grants it access to the DCR, and configures a client secret for secure ingestion.\n\nThe `PartnerRiskEvents` table must be available in the target workspace. This connector does not define the shared table's schema. Existing data in custom tables is not migrated or deleted."
                 }
               },
               {
@@ -87,7 +100,7 @@
           },
           {
             "title": "2. Push your logs into the workspace",
-            "description": "Use the following parameters to configure Darktrace to send normalized JSON records with EventVendor set to Darktrace. Keep the Custom-UnifiedAgentRisk_CL input stream and the ResourceId, ResourceType, and ResourceName fields in your payload. The DCR renames these fields to TargetResourceId, TargetResourceType, and TargetResourceName in PartnerRiskEvents.",
+            "description": "Use the following parameters to configure Darktrace to send normalized JSON records with EventVendor set to Darktrace. Send Secure AI agent risk events to the Custom-UnifiedAgentRisk_CL input stream, keeping the ResourceId, ResourceType, and ResourceName fields in your payload. The DCR renames these fields to TargetResourceId, TargetResourceType, and TargetResourceName in PartnerRiskEvents. Send model alerts to the Custom-DarktracePlatformModelAlerts input stream.",
             "instructions": [
               {
                 "parameters": {
@@ -140,8 +153,15 @@
               },
               {
                 "parameters": {
-                  "label": "Stream Name",
+                  "label": "Stream Name (Secure AI alerts)",
                   "value": "Custom-UnifiedAgentRisk_CL"
+                },
+                "type": "CopyableLabel"
+              },
+              {
+                "parameters": {
+                  "label": "Stream Name (Model alerts)",
+                  "value": "Custom-DarktracePlatformModelAlerts"
                 },
                 "type": "CopyableLabel"
               }

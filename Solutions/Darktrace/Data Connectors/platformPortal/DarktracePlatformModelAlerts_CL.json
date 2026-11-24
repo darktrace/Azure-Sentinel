@@ -1,0 +1,90 @@
+{
+  "name": "DarktracePlatformModelAlerts_CL",
+  "type": "Microsoft.OperationalInsights/workspaces/tables",
+  "apiVersion": "2021-03-01-privatepreview",
+  "tags": {},
+  "properties": {
+    "plan": "Analytics",
+    "schema": {
+      "name": "DarktracePlatformModelAlerts_CL",
+      "columns": [
+        {
+          "name": "TimeGenerated",
+          "type": "datetime"
+        },
+        {
+          "name": "alertTime",
+          "type": "datetime"
+        },
+        {
+          "name": "alertId",
+          "type": "string"
+        },
+        {
+          "name": "pbid",
+          "type": "string"
+        },
+        {
+          "name": "darktraceProduct",
+          "type": "string"
+        },
+        {
+          "name": "modelName",
+          "type": "string"
+        },
+        {
+          "name": "modelUuid",
+          "type": "string"
+        },
+        {
+          "name": "modelTags",
+          "type": "dynamic"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        },
+        {
+          "name": "score",
+          "type": "int"
+        },
+        {
+          "name": "bestDeviceName",
+          "type": "string"
+        },
+        {
+          "name": "deviceId",
+          "type": "int"
+        },
+        {
+          "name": "deviceHostname",
+          "type": "string"
+        },
+        {
+          "name": "deviceIp",
+          "type": "string"
+        },
+        {
+          "name": "deviceType",
+          "type": "string"
+        },
+        {
+          "name": "aiaSummary",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        },
+        {
+          "name": "assignee",
+          "type": "string"
+        },
+        {
+          "name": "customLabel",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}
