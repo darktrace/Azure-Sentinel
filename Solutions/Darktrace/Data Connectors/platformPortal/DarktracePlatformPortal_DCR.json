@@ -103,7 +103,36 @@
           { "name": "assignee", "type": "string" },
           { "name": "customLabel", "type": "string" }
         ]
-      }
+      },
+          "Custom-DarktraceAuditEvents": {
+            "columns": [
+                { "name": "EventStartTime", "type": "datetime" },
+                { "name": "EventEndTime", "type": "datetime" },
+                { "name": "EventCount", "type": "int" },
+                { "name": "EventOriginalUid", "type": "string" },
+                { "name": "EventMessage", "type": "string" },
+                { "name": "EventVendor", "type": "string" },
+                { "name": "EventProduct", "type": "string" },
+                { "name": "EventSchema", "type": "string" },
+                { "name": "EventSchemaVersion", "type": "string" },
+                { "name": "Operation", "type": "string" },
+                { "name": "EventType", "type": "string" },
+                { "name": "EventSubType", "type": "string" },
+                { "name": "EventResult", "type": "string" },
+                { "name": "DvcScopeId", "type": "string" },
+                { "name": "DvcScope", "type": "string" },
+                { "name": "ActorUserId", "type": "string" },
+                { "name": "ActorOriginalUserType", "type": "string" },
+                { "name": "ObjectId", "type": "string" },
+                { "name": "OriginalObjectType", "type": "string" },
+                { "name": "Object", "type": "string" },
+                { "name": "ObjectType", "type": "string" },
+                { "name": "SrcIpAddr", "type": "string" },
+                { "name": "HttpUserAgent", "type": "string" },
+                { "name": "TargetAppName", "type": "string" },
+                { "name": "AdditionalFields", "type": "dynamic" }
+            ]
+            }
         },
         "destinations": {
             "logAnalytics": [
@@ -133,6 +162,12 @@
                 ],
                 "transformKql": "source | extend TimeGenerated = now()",
                 "outputStream": "Custom-DarktracePlatformModelAlerts_CL"
+            },
+            {
+            "streams": ["Custom-DarktracePlatformAuditEvents"],
+            "destinations": ["clv2ws1"],
+            "transformKql": "source | extend TimeGenerated = coalesce(EventStartTime, now())",
+            "outputStream": "Custom-DarktracePlatformAuditEvents_CL"
             }
         ]
     }

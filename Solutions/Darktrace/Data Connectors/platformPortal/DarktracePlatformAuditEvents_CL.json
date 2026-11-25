@@ -1,0 +1,40 @@
+{
+  "name": "DarktracePlatformAuditEvents_CL",
+  "type": "Microsoft.OperationalInsights/workspaces/tables",
+  "apiVersion": "2021-03-01-privatepreview",
+  "tags": {},
+  "properties": {
+    "plan": "Analytics",
+    "schema": {
+      "name": "DarktraceAuditEvents_CL",
+      "columns": [
+        { "name": "TimeGenerated", "type": "dateTime" },
+        { "name": "EventStartTime", "type": "dateTime" },
+        { "name": "EventEndTime", "type": "dateTime" },
+        { "name": "EventCount", "type": "int" },
+        { "name": "EventOriginalUid", "type": "string" },
+        { "name": "EventMessage", "type": "string" },
+        { "name": "EventVendor", "type": "string" },
+        { "name": "EventProduct", "type": "string" },
+        { "name": "EventSchema", "type": "string" },
+        { "name": "EventSchemaVersion", "type": "string" },
+        { "name": "Operation", "type": "string" },
+        { "name": "EventType", "type": "string" },
+        { "name": "EventSubType", "type": "string" },
+        { "name": "EventResult", "type": "string" },
+        { "name": "DvcScopeId", "type": "string" },
+        { "name": "DvcScope", "type": "string" },
+        { "name": "ActorUserId", "type": "string" },
+        { "name": "ActorOriginalUserType", "type": "string" },
+        { "name": "ObjectId", "type": "string" },
+        { "name": "OriginalObjectType", "type": "string" },
+        { "name": "Object", "type": "string" },
+        { "name": "ObjectType", "type": "string" },
+        { "name": "SrcIpAddr", "type": "string" },
+        { "name": "HttpUserAgent", "type": "string" },
+        { "name": "TargetAppName", "type": "string" },
+        { "name": "AdditionalFields", "type": "dynamic" }
+      ]
+    }
+  }
+}
